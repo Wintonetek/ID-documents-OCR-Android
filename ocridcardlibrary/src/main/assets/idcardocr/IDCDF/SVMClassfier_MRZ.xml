@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vecSVMClassfier>
+	<!-- <SVMClassfier SVMID="130010000" imageType="1" sizeType="2" name="香港护照" dataPath="SVMCloud/130010000"> -->
+		<!-- <ID subClassFierID="130010104" mainID="13" subID="0010104" name="香港护照1998版"/> -->
+		<!-- <ID subClassFierID="130010106" mainID="13" subID="0010106" name="香港护照2019版"/> -->
+	<!-- </SVMClassfier> -->
+	<!-- <SVMClassfier SVMID="130020000" imageType="1" sizeType="2" name="美国护照" dataPath="SVMCloud/130020000"> -->
+		<!-- <ID subClassFierID="130020101" mainID="13" subID="0020101" name="美国护照2006版"/> -->
+		<!-- <ID subClassFierID="130020102" mainID="13" subID="0020102" name="美国护照2020版"/> -->
+	<!-- </SVMClassfier> -->
+	<!-- <SVMClassfier SVMID="130090000" imageType="1" sizeType="2" name="英国护照" dataPath="SVMCloud/130090000"> -->
+		<!-- <ID subClassFierID="130090101" mainID="13" subID="0090101" name="英国护照2010版"/> -->
+		<!-- <ID subClassFierID="130090102" mainID="13" subID="0090102" name="英国护照2015版"/> -->
+	<!-- </SVMClassfier> -->
+	<!-- <SVMClassfier SVMID="130110000" imageType="1" sizeType="2" name="德国护照" dataPath="SVMCloud/130110000"> -->
+		<!-- <ID subClassFierID="130110101" mainID="13" subID="0110101" name="德国护照2005版"/> -->
+		<!-- <ID subClassFierID="130110102" mainID="13" subID="0110102" name="德国护照2017版"/> -->
+	<!-- </SVMClassfier> -->
+	<!-- <SVMClassfier SVMID="130300000" imageType="1" sizeType="2" name="菲律宾护照" dataPath="SVMCloud/130300000"> -->
+		<!-- <ID subClassFierID="130300101" mainID="13" subID="0300101" name="菲律宾护照2009版"/> -->
+		<!-- <ID subClassFierID="130300103" mainID="13" subID="0300103" name="菲律宾护照2016版"/> -->
+	<!-- </SVMClassfier> -->
+	<SVMClassfier SVMID="130010200" imageType="1" sizeType="2" name="中国公务普通护照" dataPath="SVMCloud/130010200">
+		<ID subClassFierID="130010201" mainID="13" subID="0010201" name="中国公务普通护照97-2版"/>
+		<ID subClassFierID="130010202" mainID="13" subID="0010202" name="中国公务普通护照2023版"/>
+		<ID subClassFierID="130010203" mainID="13" subID="0010203" name="中国公务普通护照2011版"/>
+	</SVMClassfier>	
+	<SVMClassfier SVMID="130010400" imageType="1" sizeType="2" name="中国公务护照" dataPath="SVMCloud/130010400">
+		<ID subClassFierID="130010401" mainID="13" subID="0010401" name="中国公务护照2011版"/>
+		<ID subClassFierID="130010402" mainID="13" subID="0010402" name="中国公务护照2023版"/>
+	</SVMClassfier>
+</vecSVMClassfier>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE IDCARD SYSTEM "IDCARD.dtd">
+<IDCARD>
+    <CIDCardTemplate nMainDocumentID="2095" chDocumentName="阿曼身份证-照片页" engDocumentName="Oman Resident Identity Card  Portrait Page" imageSizeType="2">
+        <vecAutoProcess>
+            <!--导入识别-->
+            <vecProcessMode nMode="0">
+                <!--CAutoProcess processType="22">
+			  <CIDCardAutoProcessEx nCropType="0" bCrop="1" nRotateType="3" bRotate="1" nMaxAngle="0.3" nMinAngle="0.017" nFilledType="1" bTilt="1" bSameSize="1" bResize="1" nWidth="1008" nHeight="638"/> 
+			</CAutoProcess-->
+                <CAutoProcess processType="25">
+                    <PerspectiveTransformEx nType="2080" nWidth="896" nHeight="569"/>
+                </CAutoProcess>
+            </vecProcessMode>
+            <!--视频流-->
+            <vecProcessMode nMode="1">
+                <!--CAutoProcess processType="23">
+			  <CIDCardAutoProcessEx2 nCropType="4" nMaxAngle="0.3" nMinAngle="0.017" nFilledType="1" bIs180Rotate="0" bIsValid="0"  bSameSize="1"/> 
+			</CAutoProcess-->
+                <CAutoProcess processType="24">
+                    <PerspectiveTransform nType="3" bIs180Rotate="0" bIsValid="1" nWidth="896" nHeight="569"/>
+                </CAutoProcess>
+            </vecProcessMode>
+        </vecAutoProcess>
+        <vecProcessImage>
+            <CProcessImage processType="3">
+                <CEraseBlackBorderEx>
+                    <!--processRect要检测黑边的区域-->
+                    <RECT Left="0" Top="0" Right="10000" Bottom="10000"/>
+                    <!--unProcessRect在要检测的区域里，能够确定的不需要检测黑边的部分，
+					也就是说这个区域肯定没有黑边存在，用来提高检测效率-->
+                    <RECT Left="800" Top="800" Right="9200" Bottom="9800"/>
+                </CEraseBlackBorderEx>
+            </CProcessImage>
+        </vecProcessImage>
+        <vecRegion>
+            <!--头像区域-->
+            <CRegion nIndex="0" nRegionType="0" nProcessOrder="0">
+                <!--处理该区域需要的图像信息的光的类型-->
+                <vecImageLightType>
+                    <!--1:可见光图;2:红外光图;4:紫外光图 -->
+                    <LIGHTTYPE>1</LIGHTTYPE>
+                </vecImageLightType>
+                <!--定义区域的定位信息,如果是头像区域还需要进一步精确定位，识别区域就不用了-->
+                <!--bAccurateLocate为1表示需要进一步精确定位,0代表不需要-->
+                <CLocateRegion bAccurateLocate="1">
+                    <!--在定位前进行的预处理信息，一般是二值化-->
+                    <vecProcessImage>
+                        <CProcessImage processType="1">
+                            <CTrueColorToGrayEx nFilter="0">
+                                <RECT Top="0" Right="0" Bottom="0" Left="0"/>
+                            </CTrueColorToGrayEx>
+                        </CProcessImage>
+                    </vecProcessImage>
+                    <!--rcMinRect:指定定位区域的最小范围，即定位后的区域范围必须包含这个区域-->
+                    <RECT Left="0" Top="0" Right="9999" Bottom="9999"/>
+                    <vecAnchorLocateInfo>
+                        <!--nDisToAnchor的值也是整图的百分比*10000计算出来的-->
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="0" anchorType="1"/>
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="2914" anchorType="2"/>
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="461" anchorType="3"/>
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="5723" anchorType="4"/>
+                    </vecAnchorLocateInfo>
+                    <!--该区域定义的区域类型基准点的信息-->
+                </CLocateRegion>
+                <!--区域内定位行的信息-->
+            </CRegion>
+            <CRegion nIndex="1" nRegionType="1" nProcessOrder="1">
+                <!--处理该区域需要的图像信息的光的类型-->
+                <vecImageLightType>
+                    <!--1:可见光图;2:红外光图;4:紫外光图 -->
+                    <LIGHTTYPE>2</LIGHTTYPE>
+                    <LIGHTTYPE>1</LIGHTTYPE>
+                </vecImageLightType>
+                <!--定义区域的定位信息,如果是头像区域还需要进一步精确定位，识别区域就不用了-->
+                <!--bAccurateLocate为1表示需要进一步精确定位,0代表不需要-->
+                <CLocateRegion bAccurateLocate="0">
+                    <vecProcessImage/>
+                    <!--rcMinRect:指定定位区域的最小范围，即定位后的区域范围必须包含这个区域-->
+                    <RECT Left="9999" Top="9999" Right="0" Bottom="0"/>
+                    <vecAnchorLocateInfo>
+                        <!--nDisToAnchor的值也是整图的百分比*10000计算出来的-->
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="5312" anchorType="1"/>
+                        <!-- <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="7700" anchorType="1"/> -->
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="8570" anchorType="2"/>
+                        <!-- <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="9920" anchorType="2"/> -->
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="4430" anchorType="3"/>
+                        <!-- <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="2708" anchorType="3"/> -->
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="7938" anchorType="4"/>
+                        <!-- <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="3502" anchorType="4"/> -->
+                    </vecAnchorLocateInfo>
+                    <!--该区域定义的区域类型基准点的信息-->
+                    <vecCLocateAnchor/>
+                </CLocateRegion>
+                <CLocateLine>
+                    <RECT Left="0" Top="0" Right="100" Bottom="100"/>
+                    <RECT Left="0" Top="0" Right="100" Bottom="100"/>
+                    <CLocateInfo bEraseStart="0" nMinWHRatio="0" nMaxWHRatio="160" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="0" bRemoveLineNoise="0" nMinElementNum="4" nMaxElementNum="4" nMinWidth="400" nMaxWidth="3000" nMinHeight="220" nMaxHeight="800" nMinSpace="100" nMaxSpace="250" bPostProcess="0">
+                        <vecCLocateMethod>
+                            <CLocateMethod nLocateMethod="1">
+                                <vecProcessImage>
+                                    <CProcessImage processType="1">
+                                        <CTrueColorToGrayEx nFilter="-1">
+                                            <RECT Top="0" Right="0" Bottom="0" Left="0"/>
+                                        </CTrueColorToGrayEx>
+                                    </CProcessImage>
+                                    <CProcessImage processType="2">
+                                        <CGrayToBinaryEx>
+                                            <vecBinaryParam>
+                                                <BINARYPARAM nBlockNum="1" nMethod="1"/>
+                                            </vecBinaryParam>
+                                            <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                                        </CGrayToBinaryEx>
+                                    </CProcessImage>
+                                </vecProcessImage>
+                            </CLocateMethod>
+                            <CLocateMethod nLocateMethod="0">
+                                <!--在定位前进行的预处理信息，一般是二值化-->
+                                <vecProcessImage>
+                                    <CProcessImage processType="1">
+                                        <CTrueColorToGrayEx nFilter="0">
+                                            <RECT Top="0" Right="0" Bottom="0" Left="0"/>
+                                        </CTrueColorToGrayEx>
+                                    </CProcessImage>
+                                </vecProcessImage>
+                            </CLocateMethod>
+                        </vecCLocateMethod>
+                    </CLocateInfo>
+                    <positionPlus nLeftPlus="-140" nRightPlus="150" nTopPlus="-120" nBottomPlus="120"/>
+                </CLocateLine>
+                <vecLine>
+                    <!-- 身份证号 -->
+                    <CLine nIndex="0" bStartOffset="1" bEndOffset="0" bExist="1" bNeedRecog="1" nCheckKeyWord="0">
+                        <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                        <vecRecogInfo>
+                            <vecRegionRecogInfo nProcessOrder="1">
+                                <CRegionRecogInfo nKernelType="1" nMinElementNum="1" nMaxElementNum="-1">
+                                    <vecProcessImage>
+                                        <CProcessImage processType="1">
+                                            <CTrueColorToGrayEx nFilter="-1">
+                                                <RECT Top="0" Right="0" Bottom="0" Left="0"/>
+                                            </CTrueColorToGrayEx>
+                                        </CProcessImage>
+                                        <CProcessImage processType="2">
+                                            <CGrayToBinaryEx>
+                                                <vecBinaryParam>
+                                                    <BINARYPARAM nBlockNum="1" nMethod="6"/>
+                                                </vecBinaryParam>
+                                                <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                                            </CGrayToBinaryEx>
+                                        </CProcessImage>
+                                    </vecProcessImage>
+                                    <vecRegionKernal>
+                                        <CRegionKernalInfo kernalMainType="4" nKernalSubType="0" nFilterType="0" nFillingMethod="0" strFilterPlus="0123456789" nRecogType="0">
+                                            <vecDLKernalInfo>
+                                                <!-- <CDLKernalInfo nType="0" nRecogImgeType="0"/> -->
+                                                <CDLKernalInfo nType="1" nRecogImgeType="0"/>
+                                            </vecDLKernalInfo>
+                                        </CRegionKernalInfo>
+                                    </vecRegionKernal>
+                                </CRegionRecogInfo>
+                            </vecRegionRecogInfo>
+                        </vecRecogInfo>
+                        <vecRecogUnit>
+                            <CRecogUnit nIndex="1" bLocate="0" bRecog="0"/>
+                        </vecRecogUnit>
+                    </CLine>
+                    <!--有效期至-->
+                    <CLine nIndex="1" bStartOffset="1" bEndOffset="0" bExist="1" bNeedRecog="1" nCheckKeyWord="0">
+                        <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                        <vecRecogInfo>
+                            <vecRegionRecogInfo nProcessOrder="1">
+                                <CRegionRecogInfo nKernelType="1" nMinElementNum="1" nMaxElementNum="-1">
+                                    <vecProcessImage>
+                                        <CProcessImage processType="1">
+                                            <CTrueColorToGrayEx nFilter="-1">
+                                                <RECT Top="0" Right="0" Bottom="0" Left="0"/>
+                                            </CTrueColorToGrayEx>
+                                        </CProcessImage>
+                                        <CProcessImage processType="2">
+                                            <CGrayToBinaryEx>
+                                                <vecBinaryParam>
+                                                    <BINARYPARAM nBlockNum="1" nMethod="6"/>
+                                                </vecBinaryParam>
+                                                <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                                            </CGrayToBinaryEx>
+                                        </CProcessImage>
+                                    </vecProcessImage>
+                                    <vecRegionKernal>
+                                        <CRegionKernalInfo kernalMainType="4" nKernalSubType="0" nFilterType="0" nFillingMethod="0" strFilterPlus="0123456789" nRecogType="0">
+                                            <vecDLKernalInfo>
+                                                <!-- <CDLKernalInfo nType="0" nRecogImgeType="0"/> -->
+                                                <CDLKernalInfo nType="1" nRecogImgeType="0"/>
+                                            </vecDLKernalInfo>
+                                        </CRegionKernalInfo>
+                                    </vecRegionKernal>
+                                </CRegionRecogInfo>
+                            </vecRegionRecogInfo>
+                        </vecRecogInfo>
+                        <vecRecogUnit>
+                            <CRecogUnit nIndex="2" bLocate="0" bRecog="0"/>
+                        </vecRecogUnit>
+                    </CLine>
+                    <!--出生日期-->
+                    <CLine nIndex="2" bStartOffset="1" bEndOffset="0" bExist="1" bNeedRecog="1" nCheckKeyWord="0">
+                        <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                        <vecRecogInfo>
+                            <vecRegionRecogInfo nProcessOrder="1">
+                                <CRegionRecogInfo nKernelType="1" nMinElementNum="1" nMaxElementNum="-1">
+                                    <vecProcessImage>
+                                        <CProcessImage processType="1">
+                                            <CTrueColorToGrayEx nFilter="-1">
+                                                <RECT Top="0" Right="0" Bottom="0" Left="0"/>
+                                            </CTrueColorToGrayEx>
+                                        </CProcessImage>
+                                        <CProcessImage processType="2">
+                                            <CGrayToBinaryEx>
+                                                <vecBinaryParam>
+                                                    <BINARYPARAM nBlockNum="1" nMethod="6"/>
+                                                </vecBinaryParam>
+                                                <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                                            </CGrayToBinaryEx>
+                                        </CProcessImage>
+                                    </vecProcessImage>
+                                    <vecRegionKernal>
+                                        <CRegionKernalInfo kernalMainType="4" nKernalSubType="0" nFilterType="0" nFillingMethod="0" strFilterPlus="0123456789" nRecogType="0">
+                                            <vecDLKernalInfo>
+                                                <!-- <CDLKernalInfo nType="0" nRecogImgeType="0"/> -->
+                                                <CDLKernalInfo nType="1" nRecogImgeType="0"/>
+                                            </vecDLKernalInfo>
+                                        </CRegionKernalInfo>
+                                    </vecRegionKernal>
+                                </CRegionRecogInfo>
+                            </vecRegionRecogInfo>
+                        </vecRecogInfo>
+                        <vecRecogUnit>
+                            <CRecogUnit nIndex="3" bLocate="0" bRecog="0"/>
+                        </vecRecogUnit>
+                    </CLine>
+                    <!--出生地-->
+                    <CLine nIndex="2" bStartOffset="1" bEndOffset="0" bExist="1" bNeedRecog="1" nCheckKeyWord="0">
+                        <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                        <vecRecogInfo>
+                            <vecRegionRecogInfo nProcessOrder="1">
+                                <CRegionRecogInfo nKernelType="1" nMinElementNum="1" nMaxElementNum="-1">
+                                    <vecProcessImage>
+                                        <CProcessImage processType="1">
+                                            <CTrueColorToGrayEx nFilter="-1">
+                                                <RECT Top="0" Right="0" Bottom="0" Left="0"/>
+                                            </CTrueColorToGrayEx>
+                                        </CProcessImage>
+                                        <CProcessImage processType="2">
+                                            <CGrayToBinaryEx>
+                                                <vecBinaryParam>
+                                                    <BINARYPARAM nBlockNum="1" nMethod="6"/>
+                                                </vecBinaryParam>
+                                                <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                                            </CGrayToBinaryEx>
+                                        </CProcessImage>
+                                    </vecProcessImage>
+                                    <vecRegionKernal>
+                                        <CRegionKernalInfo kernalMainType="4" nKernalSubType="2" nFilterType="0" nFillingMethod="0" strFilterPlus="" nRecogType="0">
+                                            <vecDLKernalInfo>
+                                                <!-- <CDLKernalInfo nType="0" nRecogImgeType="0"/> -->
+                                                <CDLKernalInfo nType="1" nRecogImgeType="0"/>
+                                            </vecDLKernalInfo>
+                                        </CRegionKernalInfo>
+                                    </vecRegionKernal>
+                                </CRegionRecogInfo>
+                            </vecRegionRecogInfo>
+                        </vecRecogInfo>
+                        <vecRecogUnit>
+                            <CRecogUnit nIndex="4" bLocate="0" bRecog="0"/>
+                        </vecRecogUnit>
+                    </CLine>
+                </vecLine>
+            </CRegion>
+            <!--姓名-->
+            <CRegion nIndex="1" nRegionType="1" nProcessOrder="1">
+                <!--处理该区域需要的图像信息的光的类型-->
+                <vecImageLightType>
+                    <!--1:可见光图;2:红外光图;4:紫外光图 -->
+                    <LIGHTTYPE>2</LIGHTTYPE>
+                    <LIGHTTYPE>1</LIGHTTYPE>
+                </vecImageLightType>
+                <!--定义区域的定位信息,如果是头像区域还需要进一步精确定位，识别区域就不用了-->
+                <!--bAccurateLocate为1表示需要进一步精确定位,0代表不需要-->
+                <CLocateRegion bAccurateLocate="0">
+                    <vecProcessImage/>
+                    <!--rcMinRect:指定定位区域的最小范围，即定位后的区域范围必须包含这个区域-->
+                    <RECT Left="9999" Top="9999" Right="0" Bottom="0"/>
+                    <vecAnchorLocateInfo>
+                        <!--nDisToAnchor的值也是整图的百分比*10000计算出来的-->
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="3085" anchorType="1"/>
+                        <!-- <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="7700" anchorType="1"/> -->
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="9171" anchorType="2"/>
+                        <!-- <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="9920" anchorType="2"/> -->
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="7892" anchorType="3"/>
+                        <!-- <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="2708" anchorType="3"/> -->
+                        <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="9015" anchorType="4"/>
+                        <!-- <CAnchorLocateInfo nAnchorIndex="0" nDisToAnchor="3502" anchorType="4"/> -->
+                    </vecAnchorLocateInfo>
+                    <!--该区域定义的区域类型基准点的信息-->
+                    <vecCLocateAnchor/>
+                </CLocateRegion>
+                <CLocateLine>
+                    <RECT Left="0" Top="0" Right="100" Bottom="100"/>
+                    <RECT Left="0" Top="0" Right="100" Bottom="100"/>
+                    <CLocateInfo bEraseStart="0" nMinWHRatio="0" nMaxWHRatio="160" nSplitWHRatio="2000" bSplit="0" nNumType="0" bSpace="0" bWidth="0" bHeight="0" bRemoveLineNoise="0" nMinElementNum="1" nMaxElementNum="1" nMinWidth="300" nMaxWidth="3500" nMinHeight="220" nMaxHeight="800" nMinSpace="100" nMaxSpace="250" bPostProcess="0">
+                        <vecCLocateMethod>
+                            <CLocateMethod nLocateMethod="1">
+                                <vecProcessImage>
+                                    <CProcessImage processType="1">
+                                        <CTrueColorToGrayEx nFilter="-1">
+                                            <RECT Top="0" Right="0" Bottom="0" Left="0"/>
+                                        </CTrueColorToGrayEx>
+                                    </CProcessImage>
+                                    <CProcessImage processType="2">
+                                        <CGrayToBinaryEx>
+                                            <vecBinaryParam>
+                                                <BINARYPARAM nBlockNum="1" nMethod="1"/>
+                                            </vecBinaryParam>
+                                            <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                                        </CGrayToBinaryEx>
+                                    </CProcessImage>
+                                </vecProcessImage>
+                            </CLocateMethod>
+                            <CLocateMethod nLocateMethod="0">
+                                <!--在定位前进行的预处理信息，一般是二值化-->
+                                <vecProcessImage>
+                                    <CProcessImage processType="1">
+                                        <CTrueColorToGrayEx nFilter="0">
+                                            <RECT Top="0" Right="0" Bottom="0" Left="0"/>
+                                        </CTrueColorToGrayEx>
+                                    </CProcessImage>
+                                </vecProcessImage>
+                            </CLocateMethod>
+                        </vecCLocateMethod>
+                    </CLocateInfo>
+                    <positionPlus nLeftPlus="-140" nRightPlus="150" nTopPlus="-120" nBottomPlus="120"/>
+                </CLocateLine>
+                <vecLine>
+                    <CLine nIndex="0" bStartOffset="1" bEndOffset="0" bExist="1" bNeedRecog="1" nCheckKeyWord="0">
+                        <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                        <vecRecogInfo>
+                            <vecRegionRecogInfo nProcessOrder="1">
+                                <CRegionRecogInfo nKernelType="1" nMinElementNum="1" nMaxElementNum="-1">
+                                    <vecProcessImage>
+                                        <CProcessImage processType="1">
+                                            <CTrueColorToGrayEx nFilter="-1">
+                                                <RECT Top="0" Right="0" Bottom="0" Left="0"/>
+                                            </CTrueColorToGrayEx>
+                                        </CProcessImage>
+                                        <CProcessImage processType="2">
+                                            <CGrayToBinaryEx>
+                                                <vecBinaryParam>
+                                                    <BINARYPARAM nBlockNum="1" nMethod="6"/>
+                                                </vecBinaryParam>
+                                                <RECT Left="0" Top="0" Right="0" Bottom="0"/>
+                                            </CGrayToBinaryEx>
+                                        </CProcessImage>
+                                    </vecProcessImage>
+                                    <vecRegionKernal>
+                                        <CRegionKernalInfo kernalMainType="4" nKernalSubType="2" nFilterType="0" nFillingMethod="0" strFilterPlus="" nRecogType="0">
+                                            <vecDLKernalInfo>
+                                                <!-- <CDLKernalInfo nType="0" nRecogImgeType="0"/> -->
+                                                <CDLKernalInfo nType="1" nRecogImgeType="0"/>
+                                            </vecDLKernalInfo>
+                                        </CRegionKernalInfo>
+                                    </vecRegionKernal>
+                                </CRegionRecogInfo>
+                            </vecRegionRecogInfo>
+                        </vecRecogInfo>
+                        <vecRecogUnit>
+                            <CRecogUnit nIndex="5" bLocate="0" bRecog="0"/>
+                        </vecRecogUnit>
+                    </CLine>
+                </vecLine>
+            </CRegion>
+        </vecRegion>
+        <vecDeriveUnit>
+            <CDeriveUnit nEndCharIndex="99" nSrcRecogUnitIndex="7" nIndex="7" nStartCharIndex="-1">
+                <vecFlagFind>
+                    <CFlagFind nPosType="0" nFindType="0" bStart="0" nStartIndex="0" strFlag=":" nNum="1" nIndexPlus="1"/>
+                </vecFlagFind>
+            </CDeriveUnit>
+            <CDeriveUnit nEndCharIndex="99" nSrcRecogUnitIndex="8" nIndex="8" nStartCharIndex="-1">
+                <vecFlagFind>
+                    <CFlagFind nPosType="0" nFindType="0" bStart="0" nStartIndex="0" strFlag=":" nNum="1" nIndexPlus="1"/>
+                </vecFlagFind>
+            </CDeriveUnit>
+        </vecDeriveUnit>
+        <vecAnchor>
+            <!--0基准点-->
+            <CAnchor nIndex="0" anchorType="0" anchorPos="0" bEnable="0" nMinPos="-1" nMaxPos="-1"/>
+            <!--头像区域定义右基准-->
+            <CAnchor nIndex="1" anchorPos="-1" anchorType="2" bEnable="0" nMinPos="-1" nMaxPos="-1"/>
+            <!--头像区域定义上基准-->
+            <CAnchor nIndex="2" anchorPos="-1" anchorType="3" bEnable="0" nMinPos="-1" nMaxPos="-1"/>
+        </vecAnchor>
+        <vecOutPutResult>
+            <COutPutResult nIndex="0" cellRecogType="20" cellNameEng="Reserve" cellName="Reserve" nOutputThreshold="0" nOutputNumber="0" bFormatResult="0"/>
+            <COutPutResult nIndex="1" cellRecogType="20" cellNameEng="ID number" cellName="ID number" nOutputThreshold="0" nOutputNumber="0" bFormatResult="0"/>
+            <COutPutResult nIndex="2" cellRecogType="3" cellNameEng="Date of Expiry" cellName="Date of Expiry" nOutputThreshold="0" nOutputNumber="0" bFormatResult="1">
+                <CFormatInfo strDefault="" strInFormat="DD/MM/YYYY" strOutFormat="YYYY-MM-DD"/>
+            </COutPutResult>
+            <COutPutResult nIndex="3" cellRecogType="3" cellNameEng="Date of Birth" cellName="Date of Birth" nOutputThreshold="0" nOutputNumber="0" bFormatResult="1">
+                <CFormatInfo strDefault="" strInFormat="DD/MM/YYYY" strOutFormat="YYYY-MM-DD"/>
+            </COutPutResult>
+            <COutPutResult nIndex="4" cellRecogType="20" cellNameEng="Birth Place" cellName="Birth Place" nOutputThreshold="0" nOutputNumber="0" bFormatResult="0"/>
+            <COutPutResult nIndex="5" cellRecogType="20" cellNameEng="Name" cellName="Name" nOutputThreshold="0" nOutputNumber="0" bFormatResult="0"/>
+        </vecOutPutResult>
+        <vecMergeUnit/>
+        <vecSubTemplate/>
+    </CIDCardTemplate>
+</IDCARD>

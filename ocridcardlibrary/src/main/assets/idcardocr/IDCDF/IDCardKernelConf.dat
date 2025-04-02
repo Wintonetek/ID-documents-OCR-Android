@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <!--写日志属性，0不写日志，1每次用覆盖的方式写日志，2追加方式写日志不会覆盖已有内容，3不崩溃则覆盖，崩溃则追加-->
+  <LogFlag value="0"/>
+  <!-- 0.CPU  1.GPU  -->
+  <DLKernalInfoType value="1"/>
+</Config>

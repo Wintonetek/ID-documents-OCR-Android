@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<copy>
+  <card name="一代证" newid="1" id="0x0001" thresh="0.90">
+     <rgn left="0.10706" right="0.29336" top="0.65151" bottom="0.85909"/>
+  </card>
+ <card name="二代证" newid="2" id="0x0002" thresh="0.92">
+     <rgn left="0.027619" right="0.18666" top="0.090566" bottom="0.615094"/>
+     <rgn left="0.05761" right="0.26119" top="0.779245" bottom="0.973396"/>  
+  </card>
+   <card name="护照" newid="13" id="0x1000" thresh="0.88">
+     <!--头像区域-->
+     <rgn left="0.01675" right="0.28198" top="0.36138" bottom="0.771"/> 
+    <!--号码区域-->
+     <rgn left="0.64864" right="0.9527" top="0.0145" bottom="0.25145"/> 
+    <!--信息区域-->
+     <rgn left="0.35135" right="0.5574" top="0.30947" bottom="0.58027"/> 
+   <!--台胞证条形码区域-->
+     <rgn left="0.05854" right="0.31275" top="0.08409" bottom="0.3068"/> 
+  </card>
+  <card name="签证" newid="12" id="0x0800" thresh="0.90">
+    <!--号码区域-->
+     <rgn left="0.55156" right="0.9375" top="0.10" bottom="0.30"/> 
+    <!--信息区域-->
+     <rgn left="0.35135" right="0.5574" top="0.30947" bottom="0.58027"/> 
+
+  </card>
+    <card name="驾照" newid="5" id="0x0010" thresh="0.90">
+     <rgn left="0.08297" right="0.290425" top="0.5106" bottom="0.8"/> 
+  </card>
+ <card name="行驶证" newid="6" id="0x0020" thresh="0.90">
+     <rgn left="0.08244" right="0.2997" top="0.5712" bottom="0.87878"/> 
+  </card>
+</copy>

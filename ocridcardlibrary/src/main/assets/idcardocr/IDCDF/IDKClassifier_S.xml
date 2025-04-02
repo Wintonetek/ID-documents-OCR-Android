@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- nPlatform 0:安卓;1:IOS;2:设备端;3:云端;4:移动端 -->
+<Classifier bMRZ="0" nPlatform="4">
+	<FilterList>
+		<Filter Index="3" Type="3" Name="SVM" FilterThresh="800">
+			<vecSVMClassfier>
+				<SVMClassfier SVMID="1000" dataPath="/SVMCloud/1000" configPath="IDCDF/SVMClassfier_Cloud.xml" name="二代身份证正反页"/>
+				<SVMClassfier SVMID="1001" dataPath="/SVMCloud/1001" configPath="IDCDF/SVMClassfier_Cloud.xml" name="机动车驾驶证正反页"/>
+				<SVMClassfier SVMID="1002" dataPath="/SVMCloud/1002" configPath="IDCDF/SVMClassfier_Cloud.xml" name="机动车行驶证正反页"/>
+				<SVMClassfier SVMID="1003" dataPath="/SVMCloud/1003" configPath="IDCDF/SVMClassfier_Cloud.xml" name="港澳居民来往内地通行证-照片页"/>
+				<SVMClassfier SVMID="1004" dataPath="/SVMCloud/1004" configPath="IDCDF/SVMClassfier_Cloud.xml" name="港澳居民来往内地通行证-机读码页"/>
+				<SVMClassfier SVMID="1005" dataPath="/SVMCloud/1005" configPath="IDCDF/SVMClassfier_Cloud.xml" name="身份证行驶证驾照自动分类"/>
+				<SVMClassfier SVMID="1006" dataPath="/SVMCloud/1006" configPath="IDCDF/SVMClassfier_Cloud.xml" name="香港居民身份证-照片页"/>
+				<SVMClassfier SVMID="1007" dataPath="/SVMCloud/1007" configPath="IDCDF/SVMClassfier_Cloud.xml" name="澳门居民身份证-照片页"/>
+				<SVMClassfier SVMID="1008" dataPath="/SVMCloud/1008" configPath="IDCDF/SVMClassfier_Cloud.xml" name="印度尼西亚居民身份证"/>
+				<SVMClassfier SVMID="1009" dataPath="/SVMCloud/1009" configPath="IDCDF/SVMClassfier_Cloud.xml" name="泰国国民身份证"/>
+				<SVMClassfier SVMID="1010" dataPath="/SVMCloud/1010" configPath="IDCDF/SVMClassfier_Cloud.xml" name="泰国驾驶证"/>
+				<SVMClassfier SVMID="1011" dataPath="/SVMCloud/1011" configPath="IDCDF/SVMClassfier_Cloud.xml" name="墨西哥选民证"/>
+				<SVMClassfier SVMID="1012" dataPath="/SVMCloud/1012" configPath="IDCDF/SVMClassfier_Cloud.xml" name="居住证"/>
+				<SVMClassfier SVMID="1013" dataPath="/SVMCloud/1013" configPath="IDCDF/SVMClassfier_Cloud.xml" name="二代身份证照片页"/>
+				<SVMClassfier SVMID="1014" dataPath="/SVMCloud/1014" configPath="IDCDF/SVMClassfier_Cloud.xml" name="机动车行驶证正页"/>
+				<SVMClassfier SVMID="1015" dataPath="/SVMCloud/1015" configPath="IDCDF/SVMClassfier_Cloud.xml" name="二代身份证临时身份证"/>
+                <SVMClassfier SVMID="1016" dataPath="/SVMCloud/1016" configPath="IDCDF/SVMClassfier_Cloud.xml" name="外国人永久居留身份证"/>
+                
+				<SVMClassfier SVMID="130010200" dataPath="/SVMCloud/130010200" configPath="IDCDF/SVMClassfier_MRZ.xml" name="中国公务普通护照"/>
+				<SVMClassfier SVMID="130010400" dataPath="/SVMCloud/130010400" configPath="IDCDF/SVMClassfier_MRZ.xml" name="中国公务护照"/>
+			</vecSVMClassfier>
+		</Filter>
+	</FilterList>
+</Classifier>

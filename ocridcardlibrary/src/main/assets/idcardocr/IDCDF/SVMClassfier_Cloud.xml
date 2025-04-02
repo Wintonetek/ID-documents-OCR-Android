@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vecSVMClassfier>
+	<!-- <imageType 1:白光 2:红外/> -->
+	<!-- <sizeType 0:二代证大小,1:二代证纵向,2:护照大小,3:军官证大小,4:长城吸入式模块图像大小,5:扫描仪军官证大小/> -->
+	<SVMClassfier SVMID="1000" imageType="1" sizeType="0" name="二代身份证正反页" dataPath="SVMCloud/1000">
+		<ID subClassFierID="21" mainID="2" subID="1" name="二代身份证-照片页"/>		
+		<ID subClassFierID="22" mainID="2" subID="2" name="二代身份证-照片页(复印件)"/>		
+		<ID subClassFierID="23" mainID="2" subID="3" name="二代身份证-照片页(新疆)"/>
+		<ID subClassFierID="3" mainID="3" subID="1" name="二代身份证-签发机关页"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1001" imageType="1" sizeType="0" name="机动车驾驶证正反页" dataPath="SVMCloud/1001">
+		<ID subClassFierID="5" mainID="5" subID="1" name="机动车驾驶证"/>		
+		<ID subClassFierID="28" mainID="28" subID="1" name="机动车驾驶证副页"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1002" imageType="1" sizeType="0" name="机动车行驶证正反页" dataPath="SVMCloud/1002">
+		<ID subClassFierID="30" mainID="30" subID="1" name="机动车行驶证副页"/>		
+		<ID subClassFierID="61" mainID="6" subID="1" name="机动车行驶证2001版"/>		
+		<ID subClassFierID="62" mainID="6" subID="2" name="机动车行驶证2005版"/>
+		<ID subClassFierID="63" mainID="6" subID="3" name="机动车行驶证2009版"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1003" imageType="1" sizeType="0" name="港澳居民来往内地通行证-照片页" dataPath="SVMCloud/1003">
+		<ID subClassFierID="141" mainID="14" subID="1" name="港澳居民来往内地通行证2009版-照片页"/>		
+		<ID subClassFierID="142" mainID="14" subID="2" name="港澳居民来往内地通行证2012版-照片页"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1004" imageType="1" sizeType="0" name="港澳居民来往内地通行证-机读码页" dataPath="SVMCloud/1004">
+		<ID subClassFierID="151" mainID="15" subID="1" name="港澳居民来往内地通行证2009版-机读码页"/>
+		<ID subClassFierID="152" mainID="15" subID="2" name="港澳居民来往内地通行证2012版-机读码页"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1005" imageType="1" sizeType="0" name="身份证行驶证驾照自动分类" dataPath="SVMCloud/1005">
+		<ID subClassFierID="21" mainID="2" subID="1" name="二代身份证-照片页"/>		
+		<ID subClassFierID="22" mainID="2" subID="2" name="二代身份证-照片页(复印件)"/>		
+		<ID subClassFierID="23" mainID="2" subID="3" name="二代身份证-照片页(新疆)"/>
+		<ID subClassFierID="3" mainID="3" subID="1" name="二代身份证-签发机关页"/>
+		<ID subClassFierID="5" mainID="5" subID="1" name="机动车驾驶证"/>		
+		<ID subClassFierID="28" mainID="28" subID="1" name="机动车驾驶证副页"/>
+		<ID subClassFierID="30" mainID="30" subID="1" name="机动车行驶证副页"/>		
+		<ID subClassFierID="61" mainID="6" subID="1" name="机动车行驶证2001版"/>
+		<ID subClassFierID="62" mainID="6" subID="2" name="机动车行驶证2005版"/>
+		<ID subClassFierID="63" mainID="6" subID="3" name="机动车行驶证2009版"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1006" imageType="1" sizeType="0" name="香港居民身份证-照片页" dataPath="SVMCloud/1006">
+		<ID subClassFierID="10011" mainID="1001" subID="1" name="香港居民身份证2003版-照片页"/>		
+		<ID subClassFierID="10012" mainID="1001" subID="2" name="香港居民身份证2018版-照片页"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1007" imageType="1" sizeType="0" name="澳门居民身份证-照片页" dataPath="SVMCloud/1007">
+		<ID subClassFierID="10051" mainID="1005" subID="1" name="澳门居民身份证2004版-照片页"/>		
+		<ID subClassFierID="10052" mainID="1005" subID="2" name="澳门居民身份证2013版-照片页"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1008" imageType="1" sizeType="0" name="印度尼西亚居民身份证" dataPath="SVMCloud/1008">
+		<ID subClassFierID="20101" mainID="2010" subID="1" name="印度尼西亚居民身份证-KEPT"/>		
+		<ID subClassFierID="20102" mainID="2010" subID="2" name="印度尼西亚居民身份证-KPT"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1009" imageType="1" sizeType="0" name="泰国国民身份证" dataPath="SVMCloud/1009">
+		<ID subClassFierID="2011" mainID="2011" subID="1" name="泰国国民身份证"/>		
+		<ID subClassFierID="2011657" mainID="2011" subID="65537" name="泰国国民身份证_180度"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1010" imageType="1" sizeType="0" name="泰国驾驶证" dataPath="SVMCloud/1010">
+		<ID subClassFierID="20121" mainID="2012" subID="1" name="泰国驾驶证"/>		
+		<ID subClassFierID="20122" mainID="2012" subID="2" name="泰国驾驶证-私家车"/>
+	</SVMClassfier>	
+	<SVMClassfier SVMID="1011" imageType="1" sizeType="0" name="墨西哥选民证" dataPath="SVMCloud/1011">
+		<ID subClassFierID="20131" mainID="2013" subID="1" name="墨西哥选民证AB"/>		
+		<ID subClassFierID="20132" mainID="2013" subID="2" name="墨西哥选民证C"/>		
+		<ID subClassFierID="20133" mainID="2013" subID="3" name="墨西哥选民证DE"/>		
+	</SVMClassfier>
+	<SVMClassfier SVMID="1012" imageType="1" sizeType="0" name="居住证" dataPath="SVMCloud/1012">
+		<ID subClassFierID="10001" mainID="1000" subID="1" name="深圳居住证"/>		
+		<ID subClassFierID="10002" mainID="1000" subID="2" name="东莞居住证"/>		
+		<ID subClassFierID="10003" mainID="1000" subID="3" name="广东居住证"/>
+	</SVMClassfier>
+	<SVMClassfier SVMID="1013" imageType="1" sizeType="0" name="二代身份证照片页" dataPath="SVMCloud/1013">
+		<ID subClassFierID="21" mainID="2" subID="1" name="二代身份证-照片页"/>		
+		<ID subClassFierID="22" mainID="2" subID="2" name="二代身份证-照片页(复印件)"/>		
+		<ID subClassFierID="23" mainID="2" subID="3" name="二代身份证-照片页(新疆)"/>		
+	</SVMClassfier>
+	<SVMClassfier SVMID="1014" imageType="1" sizeType="0" name="机动车行驶证正页" dataPath="SVMCloud/1014">
+		<ID subClassFierID="61" mainID="6" subID="1" name="机动车行驶证2001版"/>		
+		<ID subClassFierID="62" mainID="6" subID="2" name="机动车行驶证2005版"/>		
+		<ID subClassFierID="63" mainID="6" subID="3" name="机动车行驶证2009版"/>		
+	</SVMClassfier>
+	<SVMClassfier SVMID="1015" imageType="1" sizeType="0" name="二代身份证临时身份证" dataPath="SVMCloud/1015">
+		<ID subClassFierID="21" mainID="2" subID="1" name="二代身份证-照片页"/>		
+		<ID subClassFierID="22" mainID="2" subID="2" name="二代身份证-照片页(复印件)"/>		
+		<ID subClassFierID="23" mainID="2" subID="3" name="二代身份证-照片页(新疆)"/>
+		<ID subClassFierID="3" mainID="3" subID="1" name="二代身份证-签发机关页"/>		
+		<ID subClassFierID="4" mainID="4" subID="1" name="临时身份证-签发机关页"/>		
+	</SVMClassfier>
+    <SVMClassfier SVMID="1016" imageType="1" sizeType="0" name="外国人永久居留身份证" dataPath="SVMCloud/1016">
+		<ID subClassFierID="331" mainID="33" subID="1" name="外国人永久居留身份证2017 版-照片页"/>		
+		<ID subClassFierID="332" mainID="33" subID="2" name="外国人永久居留身份证2023 版-照片页"/>		
+	</SVMClassfier>
+    
+</vecSVMClassfier>

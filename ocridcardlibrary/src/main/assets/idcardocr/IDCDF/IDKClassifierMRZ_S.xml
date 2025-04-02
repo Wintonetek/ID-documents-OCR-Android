@@ -1,0 +1,2371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- nPlatform 0:安卓;1:IOS;2:设备端;3:云端;4:移动端 -->
+<Classifier bMRZ="1" nPlatform="4">
+  <FilterList>
+    <!--尺度滤波器，根据证件的尺寸进行分类-->
+	<!--3行mrz-->
+	<Filter Index="1" Type="2" Name="MRZ3" FilterThresh="800">
+		<RecogInfo MainID="30390" SubID="1">
+			<!--指定识别模板和结果索引值-->
+			<ValidFieldIndex>0</ValidFieldIndex>
+			<ValidFieldIndex>1</ValidFieldIndex>
+			<ValidFieldIndex>2</ValidFieldIndex>
+		</RecogInfo>
+		<ClassInfoList>
+			<ClassInfo Type="30390">
+				<TextLine>[\U\D&lt;]{30}</TextLine>
+				<TextLine>[\U\D&lt;]{30}</TextLine>
+				<TextLine>[\U&lt;]{30}</TextLine>
+			</ClassInfo>
+		</ClassInfoList>
+	</Filter>
+	<!--2行MRZ-->
+	<Filter Index="2" Type="2" Name="MRZ2" FilterThresh="800">
+		<RecogInfo MainID="44288" SubID="1">
+			<!--指定识别模板和结果索引值-->
+			<ValidFieldIndex>0</ValidFieldIndex>
+			<ValidFieldIndex>1</ValidFieldIndex>
+		</RecogInfo>
+		<ClassInfoList>
+			<ClassInfo Type="44288">
+				<TextLine>\U[\U&lt;]\U[\U&lt;]{2}[\U&lt;]{39}</TextLine>
+				<TextLine>[\D\U&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\U\D&lt;]{16}</TextLine>
+			</ClassInfo>
+			<ClassInfo Type="36272">
+				<TextLine>\U[\U&lt;]\U[\U&lt;]{2}[\U&lt;]{31}</TextLine>
+				<TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\U\D&lt;]{8}</TextLine>
+			</ClassInfo>
+		</ClassInfoList>
+	</Filter>
+	<!--小条 3行mrz-->
+	<Filter Index="3" Type="2" Name="MRZ3_2" FilterThresh="800">
+		<RecogInfo MainID="303902" SubID="1">
+			<!--指定识别模板和结果索引值-->
+			<ValidFieldIndex>0</ValidFieldIndex>
+			<ValidFieldIndex>1</ValidFieldIndex>
+			<ValidFieldIndex>2</ValidFieldIndex>
+		</RecogInfo>
+		<ClassInfoList>
+			<ClassInfo Type="303902">
+				<TextLine>[\U\D&lt;]{30}</TextLine>
+				<TextLine>[\U\D&lt;]{30}</TextLine>
+				<TextLine>[\U&lt;]{30}</TextLine>
+			</ClassInfo>
+		</ClassInfoList>
+	</Filter>
+	<!--小条 2行MRZ-->
+	<Filter Index="4" Type="2" Name="MRZ2_2" FilterThresh="800">
+		<RecogInfo MainID="442882" SubID="1">
+			<!--指定识别模板和结果索引值-->
+			<ValidFieldIndex>0</ValidFieldIndex>
+			<ValidFieldIndex>1</ValidFieldIndex>
+		</RecogInfo>
+		<ClassInfoList>
+			<ClassInfo Type="442882">
+				<TextLine>\U[\U&lt;]\U[\U&lt;]{2}[\U&lt;]{39}</TextLine>
+				<TextLine>[\D\U&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\U\D&lt;]{16}</TextLine>
+			</ClassInfo>
+			<ClassInfo Type="362722">
+				<TextLine>\U[\U&lt;]\U[\U&lt;]{2}[\U&lt;]{31}</TextLine>
+				<TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\U\D&lt;]{8}</TextLine>
+			</ClassInfo>
+		</ClassInfoList>
+	</Filter>
+	<!--SVM分类器-->
+    <Filter Index="5" Type="3" Name="SVM" FilterThresh="800">
+		<vecSVMClassfier>
+			<!-- <SVMClassfier SVMID="130010000" dataPath="/SVMCloud/130010000" configPath="IDCDF/SVMClassfier_MRZ.xml" name="香港护照"/> -->
+			<!-- <SVMClassfier SVMID="130020000" dataPath="/SVMCloud/130020000" configPath="IDCDF/SVMClassfier_MRZ.xml" name="美国护照"/> -->
+			<!-- <SVMClassfier SVMID="130090000" dataPath="/SVMCloud/130090000" configPath="IDCDF/SVMClassfier_MRZ.xml" name="英国护照"/> -->
+			<!-- <SVMClassfier SVMID="130110000" dataPath="/SVMCloud/130110000" configPath="IDCDF/SVMClassfier_MRZ.xml" name="德国护照"/> -->
+			<!-- <SVMClassfier SVMID="130280000" dataPath="/SVMCloud/130280000" configPath="IDCDF/SVMClassfier_MRZ.xml" name="澳大利亚护照"/> -->
+			<!-- <SVMClassfier SVMID="130300000" dataPath="/SVMCloud/130300000" configPath="IDCDF/SVMClassfier_MRZ.xml" name="菲律宾护照"/> -->
+			<SVMClassfier SVMID="130010200" datapath="/SVMCloud/130010200" configPath="IDCDF/SVMClassfier_MRZ.xml" name="中国公务普通护照"/>
+			<SVMClassfier SVMID="130010400" datapath="/SVMCloud/130010400" configPath="IDCDF/SVMClassfier_MRZ.xml" name="中国公务护照"/>
+		</vecSVMClassfier>
+	</Filter>
+  </FilterList>
+  <TemplateList>
+	<Template MainID="9" SubID="1" Name="中华人民共和国往来港澳通行证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+			<ClassInfo Type="44288">
+				<TextInfo>
+				   <TextLine>W&lt;CHN[\U&lt;]{39}</TextLine>
+				   <TextLine>W\D{9}CHN\D{7}[MF]\D{7}[\D\U&lt;]{16}</TextLine>
+				</TextInfo>
+			</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template MainID="9" SubID="2" Name="因公往来港澳通行证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo>
+		   <TextLine>AKCHN[\U&lt;]{37}A\U</TextLine>
+		   <TextLine>K\D{9}CHN\D{7}[MF]\D{7}[\D\U&lt;]{16}</TextLine>
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="9" SubID="3" Name="因公往来港澳通行证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo>
+		   <TextLine>Q[\U&lt;]CHN[\U&lt;]{39}</TextLine>
+		   <TextLine>Q\D{9}CHN\D{7}[MF]\D{7}[\D\U&lt;]{16}</TextLine>
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="9" SubID="4" Name="因公往来港澳通行证" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo> -->
+		   <!-- <TextLine>AKCHN[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>KE\D{8}CHN\D{7}[MF]\D{7}[\D\U&lt;]{16}</TextLine> -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="10" SubID="1" Name="台湾居民往来大陆通行证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>T&lt;CHN[\U&lt;]{39}</TextLine>
+		   <TextLine>\D{8}[&lt;]{?}\DCHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="10" SubID="2" Name="台湾居民往来大陆通行证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>T&lt;CHN[\U&lt;]{39}</TextLine>
+		   <TextLine>Y\D{9}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="11" SubID="1" Name="大陆居民往来台湾通行证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>D&lt;CHN[\U&lt;]{39}</TextLine>
+		   <TextLine>T\D{9}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+    <Template MainID="12" SubID="0010101" Name="中国签证MRZ44" IsBase="1" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2"> 
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>V[\U&lt;]C[HB]N[\U&lt;]{39}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+    <Template MainID="12" SubID="0010102" Name="中国签证MRZ36" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[\U&lt;]CHN[\U&lt;]{31}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0015001" Name="中国外国人居留许可" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>R&lt;CHN[\U&lt;]{31}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\U\D&lt;]{8}</TextLine>
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0015101" Name="台湾居留居住签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo>
+		   <TextLine>TZ\U{3}[\U&lt;]{31}</TextLine>
+		   <TextLine>\D{8}&lt;\DCHN\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>
+		</TextInfo>	
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0015201" Name="台湾居民往来大陆签注" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>TY\U{3}[\U&lt;]{31}</TextLine>
+		   <TextLine>\D{8}&lt;\DCHN\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>
+		</TextInfo>		
+		<TextInfo >
+		   <TextLine>TU\U{3}[\U&lt;]{31}</TextLine>
+		   <TextLine>\D{8}&lt;\DCHN\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>
+		</TextInfo>
+		<TextInfo >
+		   <TextLine>TT\U{3}[\U&lt;]{31}</TextLine>
+		   <TextLine>\D{8}&lt;\DCHN\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>
+		</TextInfo>	
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0010701" Name="中国经济特区旅游签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>VECHN[\U&lt;]{31}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0530101" Name="爱尔兰签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]IRL[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}&lt;{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template MainID="12" SubID="0920101" Name="安哥拉签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]AGO[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U[\U&lt;]{2}\D{7}[MF][\U\D]{19}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0760101" Name="奥地利签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]AUT[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0930101" Name="巴布亚新几内亚签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]PNG[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U[\U&lt;]{2}\D{7}[MF][\D&lt;]{19}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0370101" Name="巴西签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]BRA[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U[\U&lt;]{2}\D{7}[MF][\D&lt;]{19}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0015301" Name="白俄罗斯签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>B[&lt;\U]CHN[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0350101" Name="比利时斯签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]BEL[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0110301" Name="德国签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>VCD&lt;&lt;[\U&lt;]{31}</TextLine>
+		   <TextLine>\D{10}\U[\U&lt;]{2}\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0720101" Name="厄瓜多尔签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]SXM[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0470101" Name="芬兰签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]FIN[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{8}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0570101" Name="哈萨克斯坦签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]KAZ[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0750101" Name="荷兰签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]NLD[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0220101" Name="加拿大签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]CAN[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0940101" Name="捷克签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]CZE[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0950101" Name="卢森堡签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]LUX[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0020101" Name="美国签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]USA[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U[\U&lt;]{2}\D{7}[MF][\U\D&lt;]{19}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0640101" Name="墨西哥签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]MEX[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0650101" Name="挪威签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]NOR[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0030101" Name="日本签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]JPN[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U[\U&lt;]{2}\D{7}[MF][\D&lt;]{19}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0860101" Name="瑞士签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]CHE[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0790101" Name="沙特阿拉伯签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]SAU[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U[\U&lt;]{2}\D{7}[MF][\D&lt;]{19}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0960101" Name="斯洛伐克签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]SVK[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0970101" Name="苏里南签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]SUR[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0660101" Name="泰国签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]THA[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{10}\U{3}\D{7}[MF]\D{7}[\D&lt;]{8}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0890101" Name="坦桑尼亚签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]TZA[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0310101" Name="委内瑞拉签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]VEN[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0270101" Name="乌克兰签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]UKR[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0500101" Name="希腊签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]GRC[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0620101" Name="新西兰签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]NZL[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U[\U&lt;]{2}\D{7}[MF][\D&lt;]{19}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0520101" Name="匈牙利签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]HUN[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0080101" Name="伊朗签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]BJS[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0540101" Name="以色列签证" IsBase="1" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>V&lt;ISR[\U&lt;]{39}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0550101" Name="意大利签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo>
+		   <TextLine>VCITA[\U&lt;]{31}</TextLine>
+		   <TextLine>[\U\D]{1}\D{9}\U[\U&lt;]{2}\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0190101" Name="印度签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo>
+		   <TextLine>V[&lt;\U]IND[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U[\U&lt;]{2}\D{7}[MF][\D&lt;]{19}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0290101" Name="印度尼西亚签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo>
+		   <TextLine>V[&lt;\U]IDN[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U[\U&lt;]{2}\D{7}[MF][\D&lt;]{19}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0090101" Name="英国签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo>
+		   <TextLine>V[&lt;\U]GBR[\U&lt;]{1,-1}</TextLine>
+		   <TextLine>[\D\U]{8}[\D\U&lt;]\D\U{3}\D{7}[MF]\D{7}[\D&lt;]{7}\D{1}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0140301" Name="法国签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>VCFRA[\U&lt;]{31}</TextLine>
+		   <TextLine>\D{10}\U[\U&lt;]{2}\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0050101" Name="韩国签证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]{1}KOR[\U&lt;]{39}</TextLine>
+		   <TextLine>\U[\D\U]{1}\D{8}\U{3}\D{7}[MF]{1}\D{7}\U{2}\D{2}\U{2}\D{6}&lt;{4}</TextLine>
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0000101" Name="外国签证机读码36" IsBase="1" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+		<TextInfo >
+		   <TextLine>V[&lt;\U]\U[\U&lt;]{2}[\U&lt;]{31}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\U\D&lt;]{8}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0000102" Name="外国签证机读码44" IsBase="1" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>V[\U&lt;]\U[\U&lt;]{2}[\U&lt;]{39}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0010801" Name="中华人民共和国签证（访问）-2019版" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>VFCHN[\U&lt;]{39}</TextLine>
+		   <TextLine>E[\U\D&lt;]{9}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="12" SubID="0015002" Name="中华人民共和国外国人居留许可-2019版" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>R&lt;CHN[\U&lt;]{39}</TextLine>
+		   <TextLine>E[\U\D&lt;]{9}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+
+	
+	<Template MainID="13" SubID="0010000" Name="香港护照" Enable="1" SizeType="2">
+		<FilterInfoList>
+			<FilterInfo Index="2" Type="2">
+				<ClassInfo Type="44288">
+					<TextInfo>
+						<TextLine>P[\U&lt;]CHN[\U&lt;]{39}</TextLine>
+						<TextLine>H[\U\D]{9}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   		 
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+			<FilterInfo Index="5" Type="3">
+				<SVMFilter classfierID="130010000"/>
+			</FilterInfo>
+		</FilterInfoList>
+    </Template>		
+	<Template MainID="13" SubID="0010102" Name="97-2版因私普通护照" Enable="1" SizeType="2">
+		<FilterInfoList>
+			<FilterInfo Index="2" Type="2">
+			<ClassInfo Type="44288">
+				<TextInfo>
+					<TextLine>P[O0]CHN[\U&lt;]{39}</TextLine>
+					<TextLine>G\D{9}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		 
+				</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+    </Template>  
+	<Template MainID="13" SubID="0010103" Name="2012版因私普通护照" Enable="1" SizeType="2">
+		<FilterInfoList>
+			<FilterInfo Index="2" Type="2">
+			<ClassInfo Type="44288">
+				<TextInfo >
+					<TextLine>P[O0]CHN[\U&lt;]{39}</TextLine>
+					<TextLine>E[\D\U]\D{8}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		 
+				</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0010107" Name="澳门护照" Enable="1" SizeType="2">
+		<FilterInfoList>
+			<FilterInfo Index="2" Type="2">
+			<ClassInfo Type="44288">
+			<TextInfo>
+			   <TextLine>P[\U&lt;]CHN[\U&lt;]{39}</TextLine>
+			   <TextLine>M[\U\D&lt;]{9}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+			</TextInfo>
+			</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0010201" Name="中国公务护照97-2版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		  <!-- <TextInfo > -->
+			 <!-- <TextLine>P[PS]CHN[\U&lt;]{39}</TextLine> -->
+		     <!-- <TextLine>[PS]\D{9}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		  -->
+		  <!-- </TextInfo> -->
+		  <!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0010200" Name="中国公务普通护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+			 <TextLine>PPCHN[\U&lt;]{39}</TextLine>
+		     <TextLine>P[E\D]\D{8}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+		<FilterInfo Index="5" Type="3">
+			<SVMFilter classfierID="130010200"/>
+		</FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0010400" Name="中国公务护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo>
+			 <TextLine>PSCHN[\U&lt;]{39}</TextLine>
+		     <TextLine>SE\D{8}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+		<FilterInfo Index="5" Type="3">
+			<SVMFilter classfierID="130010400"/>
+		</FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0010901" Name="临时护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">	
+		  <TextInfo >
+		     <TextLine>PTCHN[\U&lt;]{39}</TextLine>
+		     <TextLine>G\D{9}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>	
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0010501" Name="中国旅行证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+			<ClassInfo Type="44288">
+		  <TextInfo>
+		     <TextLine>PTCHN[\U&lt;]{39}</TextLine>
+		     <TextLine>T\D{9}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>	
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0010601" Name="中华人民共和国出入境通行证-深圳" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo>
+			 <TextLine>P&lt;CHN[\U&lt;]{36}\U{3}</TextLine>
+		     <TextLine>X\D{9}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template> 
+	<Template MainID="13" SubID="0010602" Name="中华人民共和国出入境通行证-云南" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo>
+			 <TextLine>PLCHN[\U&lt;]{39}</TextLine>
+		     <TextLine>R\D{9}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template> 
+	<!-- <Template MainID="13" SubID="0020000" Name="美国护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+			<!-- <ClassInfo Type="44288"> -->
+				<!-- <TextInfo > -->
+				   <!-- <TextLine>P[\U&lt;]USA[\U&lt;]{39}</TextLine> -->
+				   <!-- <TextLine>[\U\D&lt;]{10}USA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+				<!-- </TextInfo> -->
+			<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+		<!-- <FilterInfo Index="5" Type="3"> -->
+			<!-- <SVMFilter classfierID="130020000"/> -->
+		<!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0020101" Name="美国普通护照2006版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]USA[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}USA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0020102" Name="美国普通护照2020版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]USA[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>E[\U\D&lt;]{9}USA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0030102" Name="日本护照2013版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+			<!-- <ClassInfo Type="44288"> -->
+		  <!-- <TextInfo> -->
+		     <!-- <TextLine>P[\U&lt;]JPN[\U&lt;]{39}</TextLine> -->
+		     <!-- <TextLine>[\U\D]{10}JPN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>				  -->
+		  <!-- </TextInfo> -->
+		  <!-- </ClassInfo>	 -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0030103" Name="日本护照2020" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+			<!-- <ClassInfo Type="44288"> -->
+		  <!-- <TextInfo> -->
+		     <!-- <TextLine>P[\U&lt;]JPN[\U&lt;]{39}</TextLine> -->
+		     <!-- <TextLine>MJ[\U\D]{8}JPN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		  -->
+		  <!-- </TextInfo> -->
+		  <!-- </ClassInfo>	 -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0050101" Name="韩国护照2005版" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+		   <TextLine>P[\U&lt;]K[0O]R[\U&lt;]{39}</TextLine>
+		     <TextLine>\U{2}\D{8}K[0O]R\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		 
+		  </TextInfo>
+		 </ClassInfo> 
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0060101" Name="土耳其护照2010版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]TUR[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}TUR\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0070101" Name="巴基斯坦护照2005版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]PAK[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}PAK\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0090000" Name="英国护照" Enable="1" SizeType="2"> -->
+		<!-- <FilterInfoList> -->
+			<!-- <FilterInfo Index="2" Type="2"> -->
+				<!-- <ClassInfo Type="44288"> -->
+					<!-- <TextInfo> -->
+						<!-- <TextLine>P[\U&lt;]GBR[\U&lt;]{39}</TextLine> -->
+						<!-- <TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   		  -->
+					<!-- </TextInfo> -->
+				<!-- </ClassInfo> -->
+			<!-- </FilterInfo> -->
+			<!-- <FilterInfo Index="5" Type="3"> -->
+				<!-- <SVMFilter classfierID="130090000"/> -->
+			<!-- </FilterInfo> -->
+		<!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0100101" Name="阿富汗护照2016版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]AFG[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}AFG\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0110000" Name="德国护照" Enable="1" SizeType="2">
+		<FilterInfoList>
+			<FilterInfo Index="2" Type="2">
+				<ClassInfo Type="44288">
+					<TextInfo>
+						<TextLine>P[\U&lt;]D&lt;&lt;[\U&lt;]{39}</TextLine>
+						<TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		 
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+			<FilterInfo Index="5" Type="3">
+				<SVMFilter classfierID="130110000"/>
+			</FilterInfo>
+		</FilterInfoList>
+    </Template>	
+	<!-- <Template MainID="13" SubID="0120201" Name="伊拉克公务护照2009版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]IRQ[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}IRQ\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0130102" Name="俄罗斯护照2010版" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+		     <TextLine>P[\U&lt;]RUS[\U&lt;]{39}</TextLine>
+		     <TextLine>\D{10}RUS\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0140101" Name="法国护照2006版" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+		     <TextLine>P[\U&lt;]FRA[\U&lt;]{39}</TextLine>
+		     <TextLine>\D{2}\U{2}\D{6}FRA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0170101" Name="吉尔吉斯斯坦护照2006版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]KGZ[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}KGZ\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0180101" Name="乌兹别克斯坦护照2011版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo> -->
+		   <!-- <TextLine>P[\U&lt;]UZB[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}UZB\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0190101" Name="印度护照2000版" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+			<TextLine>P[\U&lt;]IND[\U&lt;]{39}</TextLine>
+			<TextLine>[\U\D&lt;]{10}IND\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0200101" Name="越南护照2005版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P&lt;VNM[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}VNM\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+    <Template MainID="13" SubID="0210101" Name="蒙古护照2004版" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>P[\U&lt;]MNG[\U&lt;]{39}</TextLine>
+		   <TextLine>[\U&lt;]{2}\D{8}MNG\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0220101" Name="加拿大护照1993版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]CAN[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}CAN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0230102" Name="缅甸护照2013版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]MMR[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}MMR\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0240101" Name="叙利亚护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>P[\U&lt;]SYR[\U&lt;]{39}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}SYR\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0250101" Name="尼日利亚护照2007版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]NGA[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}NGA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0260101" Name="加纳护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]GHA[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}GHA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0270101" Name="乌克兰护照2005版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]UKR[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}UKR\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0280000" Name="澳大利亚护照" Enable="1" SizeType="2"> -->
+		<!-- <FilterInfoList> -->
+			<!-- <FilterInfo Index="2" Type="2"> -->
+				<!-- <ClassInfo Type="44288"> -->
+					<!-- <TextInfo> -->
+						<!-- <TextLine>P[\U&lt;]AUS[\U&lt;]{39}</TextLine> -->
+						<!-- <TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   		  -->
+					<!-- </TextInfo> -->
+				<!-- </ClassInfo> -->
+			<!-- </FilterInfo> -->
+			<!-- <FilterInfo Index="5" Type="3"> -->
+				<!-- <SVMFilter classfierID="130280000"/> -->
+			<!-- </FilterInfo> -->
+		<!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0290101" Name="印尼护照" Enable="1" SizeType="2">
+		<FilterInfoList>
+            <FilterInfo Index="2" Type="2">
+            <ClassInfo Type="44288">
+            <TextInfo >
+               <TextLine>P[\U&lt;]IDN[\U&lt;]{39}</TextLine>
+               <TextLine>[\U\D&lt;]{10}[\U&lt;]{3}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+            </TextInfo>
+            </ClassInfo>
+            </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0300000" Name="菲律宾护照2007版" Enable="1" SizeType="2">
+		<FilterInfoList>
+			<FilterInfo Index="2" Type="2">
+				<ClassInfo Type="44288">
+					<TextInfo >
+						<TextLine>P[\U&lt;]PHL[\U&lt;]{39}</TextLine>
+						<TextLine>\U[\U\D]\D{6}[\U\D]\DPHL\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+			<FilterInfo Index="5" Type="3">
+				<SVMFilter classfierID="130300000"/>
+			</FilterInfo>
+		</FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0300101" Name="菲律宾护照2007版" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		 <!-- <ClassInfo Type="44288"> -->
+		  <!-- <TextInfo > -->
+		     <!-- <TextLine>P[\U&lt;]PHL[\U&lt;]{39}</TextLine> -->
+		     <!-- <TextLine>\U[\U\D]\D{6}[\U\D]\DPHL\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			  -->
+		  <!-- </TextInfo> -->
+		  <!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0310101" Name="阿富汗护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]AFG[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}AFG\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0320101" Name="阿尔巴尼亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]ALB[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}ALB\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0330101" Name="阿根廷护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]ARG[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}ARG\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0340101" Name="孟加拉护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]BGD[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}BGD\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0350101" Name="比利时护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]BEL[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}BEL\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0360101" Name="波黑护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]BIH[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}BIH\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0370101" Name="巴西护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]BRA[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}BRA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0380101" Name="保加利亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]BGR[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}BGR\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0390201" Name="布隆迪共和国护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]BDI[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}BDI\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0400101" Name="白俄罗斯护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]BLR[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}BLR\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0410101" Name="柬埔寨护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]KHM[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}KHM\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0420101" Name="喀麦隆护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]CMR[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}CMR\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0430101" Name="刚果金护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]COD[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}COD\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0440101" Name="克罗地亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]HRV[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}HRV\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0450101" Name="罗马尼亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]ROU[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}ROU\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0460101" Name="埃塞俄比亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]ETH[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}ETH\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0470101" Name="芬兰护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]FIN[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}FIN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0480101" Name="格鲁吉亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]GEO[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}GEO\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0490101" Name="台湾护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">	
+		  <TextInfo >
+		     <TextLine>P&lt;TWN[\U&lt;]{39}</TextLine>
+		     <TextLine>\D{10}TWN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>
+		  </TextInfo>
+		  </ClassInfo>	
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0500101" Name="希腊护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]GRC[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}GRC\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0510101" Name="几内亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]GIN[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}GIN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0520101" Name="匈牙利护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]HUN[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}HUN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0530101" Name="爱尔兰护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]IRL[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}IRL\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0540101" Name="以色列护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]ISR[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}ISR\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0550101" Name="意大利护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]ITA[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}ITA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0560101" Name="科特迪瓦护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]CIV[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}CIV\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0570101" Name="哈萨克斯坦护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]KAZ[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}KAZ\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0580101" Name="肯尼亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]KEN[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}KEN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0590101" Name="拉脱维亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]LVA[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}LVA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0600101" Name="马里护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]MLI[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}MLI\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0610001" Name="摩尔多瓦护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]MDA[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}MDA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0620101" Name="新西兰护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]NZL[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}NZL\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0630101" Name="黎巴嫩护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+		     <TextLine>P[\U&lt;]LBN[\U&lt;]{39}</TextLine>
+		     <TextLine>\D{7}&lt;&lt;\DLBN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0640101" Name="墨西哥护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+		     <TextLine>P[\U&lt;]MEX[\U&lt;]{39}</TextLine>
+		     <TextLine>\D{10}MEX\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0650701" Name="挪威护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]NOR[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{13}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0660101" Name="泰国护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+		     <TextLine>P[\U&lt;]THA[\U&lt;]{39}</TextLine>
+		     <TextLine>\U\D{6}&lt;&lt;\DTHA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0670101" Name="约旦护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+		     <TextLine>P[\U&lt;]JOR[\U&lt;]{39}</TextLine>
+		     <TextLine>\U[\D&lt;]{9}JOR\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0680101" Name="乌拉圭护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+			 <TextLine>P[\U&lt;]URY[\U&lt;]{39}</TextLine>
+		     <TextLine>[\D\U&lt;]{10}URY\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0690101" Name="秘鲁护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]PER[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}PER\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0700101" Name="智利护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+		     <TextLine>P[\U&lt;]CHL[\U&lt;]{39}</TextLine>
+		     <TextLine>[\U\D&lt;]{10}CHL\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0710101" Name="葡萄牙护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]PRT[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}PRT\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0720101" Name="厄瓜多尔护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+		     <TextLine>P[\U&lt;]ECU[\U&lt;]{39}</TextLine>
+		     <TextLine>\U[\D&lt;]{9}ECU\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+    <Template MainID="13" SubID="0730101" Name="朝鲜护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		  <TextInfo >
+		     <TextLine>P[\U&lt;]PRK[\U&lt;]{39}</TextLine>
+		     <TextLine>\D{10}PRK\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>			 
+		  </TextInfo>
+		  </ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0740101" Name="斯里兰卡护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>P[\U&lt;]LKA[\U&lt;]{39}</TextLine>
+		   <TextLine>\U{1}\D{7}&lt;\D{1}LKA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0750101" Name="荷兰护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>P[\U&lt;]NLD[\U&lt;]{39}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}NLD\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0760001" Name="奥地利护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>P[\U&lt;]AUT[\U&lt;]{39}</TextLine>
+		   <TextLine>\U{1}\D{7}&lt;\D{1}AUT\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="13" SubID="0770101" Name="塞尔维亚护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>P[\U&lt;]SRB[\U&lt;]{39}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}SRB\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0780101" Name="科索沃护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]RKS[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}RKS\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<Template MainID="13" SubID="0790101" Name="沙特阿拉伯护照" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>P[\U&lt;]SAU[\U&lt;]{39}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}SAU\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<!-- <Template MainID="13" SubID="0800101" Name="斯洛文尼亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]SVN[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}SVN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0810101" Name="索马里护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]SOM[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}SOM\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0820101" Name="西班牙护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]ESP[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}ESP\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0830101" Name="南苏丹护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]SSD[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}SSD\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0840101" Name="苏丹护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]SDN[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}SDN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0850101" Name="欧盟瑞典护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]SWE[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}SWE\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0860101" Name="瑞士护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]CHE[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}CHE\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0870101" Name="乌干达护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]UGA[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}UGA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0880101" Name="马其顿护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]MKD[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}MKD\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0890101" Name="坦桑尼亚护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]TZA[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}TZA\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0900101" Name="委内瑞拉护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]VEN[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}VEN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- <Template MainID="13" SubID="0910101" Name="埃及护照" Enable="1" SizeType="2"> -->
+      <!-- <FilterInfoList> -->
+		<!-- <FilterInfo Index="2" Type="2"> -->
+		<!-- <ClassInfo Type="44288"> -->
+		<!-- <TextInfo > -->
+		   <!-- <TextLine>P[\U&lt;]EGY[\U&lt;]{39}</TextLine> -->
+		   <!-- <TextLine>[\U\D&lt;]{10}EGY\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>		    -->
+		<!-- </TextInfo> -->
+		<!-- </ClassInfo> -->
+        <!-- </FilterInfo> -->
+      <!-- </FilterInfoList> -->
+    <!-- </Template> -->
+	<!-- 13-512应放在13最后，防止分类分错 -->
+	<Template MainID="13" SubID="0000001" Name="默认外国护照" IsBase="1" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">	
+		  <TextInfo >
+			 <TextLine>P[\U&lt;]\U[\U&lt;]{2}[\U&lt;]{39}</TextLine>
+		     <TextLine>[\D\U&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>
+		  </TextInfo>
+		  </ClassInfo>	
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	
+
+	<Template MainID="17" SubID="1" Name="海员证2009版-照片页" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo>
+		   <TextLine>S&lt;CHN[\U&lt;]{39}</TextLine>
+		   <TextLine>\U\D{9}CHN\D{7}[FM][\D]{7}[\D\U&lt;]{16}</TextLine>
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template MainID="23" SubID="1" Name="中越边境地区出入境通行证2014版-照片页" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>BVCHN[\U&lt;]{39}</TextLine>
+		   <TextLine>B[\D]{9}CHN\D{7}[FM]\D{7}[\U&lt;]{13}\D{3}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template MainID="23" SubID="2" Name="中蒙边境地区出入境通行证2014版-照片页" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>BMCHN[\U&lt;]{39}</TextLine>
+		   <TextLine>B[\D]{9}CHN\D{7}[FM]\D{7}[\U&lt;]{13}\D{3}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template MainID="23" SubID="3" Name="中老边境地区出入境通行证2014版-照片页" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>BLCHN[\U&lt;]{39}</TextLine>
+		   <TextLine>B[\D]{9}CHN\D{7}[FM]\D{7}[\U&lt;]{13}\D{3}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template MainID="23" SubID="4" Name="中缅边境地区出入境通行证2014版-照片页" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>BBCHN[\U&lt;]{39}</TextLine>
+		   <TextLine>B[\D]{9}CHN\D{7}[FM]\D{7}[\U&lt;]{13}\D{3}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="23" SubID="5" Name="中印边境地区出入境通行证2014版-照片页" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>BICHN[\U&lt;]{39}</TextLine>
+		   <TextLine>B[\D]{9}CHN\D{7}[FM]\D{7}[\U&lt;]{13}\D{3}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template MainID="23" SubID="6" Name="中尼边境地区出入境通行证2014版-照片页" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>BNCHN[\U&lt;]{39}</TextLine>
+		   <TextLine>B[\D]{9}CHN\D{7}[FM]\D{7}[\U&lt;]{13}\D{3}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template MainID="23" SubID="7" Name="中朝边境地区出入境通行证2014版-照片页" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo >
+		   <TextLine>BCCHN[\U&lt;]{39}</TextLine>
+		   <TextLine>B[\D]{9}CHN\D{7}[FM]\D{7}[\U&lt;]{13}\D{3}</TextLine>		   
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template MainID="26" SubID="1" Name="台湾居民来往大陆通行证2015版-机读码页" Enable="1" SizeType="0">
+      <FilterInfoList>
+      <FilterInfo Index="1" Type="2">
+		<ClassInfo Type="30390">
+			<TextInfo >
+		      <TextLine>CT\D{8}&lt;\D{11}[MF]\D{7}</TextLine>
+		      <TextLine>[\U&lt;]{19}\U\D{10}</TextLine>	
+		      <TextLine>[\U&lt;]{26}[\D\U]{4}</TextLine>				  
+		   </TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template MainID="36" SubID="1" Name="越南出入境通行证" Enable="1" SizeType="2">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="44288">
+		<TextInfo>
+		   <TextLine>PEVNM[\U&lt;]{39}</TextLine>
+		   <TextLine>[\U\D&lt;]{10}VNM\D{7}[FM][\D\U&lt;]{23}</TextLine>
+		</TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+    <Template  MainID="2006" SubID="1" Name="TD2" Enable="1" SizeType="4">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+			<TextInfo >
+		      <TextLine>[ACI]D\U[\U&lt;]{2}[\U&lt;]{31}</TextLine>
+		      <TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM&lt;]\D{7}[\U\D&lt;]{8}</TextLine>			  
+		   </TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template  MainID="2009" SubID="3" Name="TD1-APEC" IsBase="0" Enable="1" SizeType="0"><!--三行机读码卡片-->
+      <FilterInfoList>
+		<FilterInfo Index="1" Type="2">
+		<ClassInfo Type="30390">
+			<TextInfo >
+		      <TextLine>CPCHN[\U\D&lt;]{25}</TextLine>
+		      <TextLine>[\D]{7}[MF][\D]{7}[\U&lt;]{3}[\D\U&lt;]{11}\D</TextLine>
+              <TextLine>[\U&lt;]{30}</TextLine>			  
+		   </TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template  MainID="2009" SubID="1" Name="TD1-台湾" IsBase="0" Enable="1" SizeType="0"><!--三行机读码卡片-->
+      <FilterInfoList>
+		<FilterInfo Index="1" Type="2">
+		<ClassInfo Type="30390">
+			<TextInfo >
+		      <TextLine>[ACI][\U&lt;]TWN[\D&lt;]{25}</TextLine>
+		      <TextLine>[\D]{7}[MF][\D]{7}[\U&lt;]{3}[\D\U&lt;]{11}\D</TextLine>
+              <TextLine>[\U\D&lt;]{30}</TextLine>			  
+		   </TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template  MainID="2009" SubID="2" Name="TD1" IsBase="1" Enable="1" SizeType="0"><!--三行机读码卡片-->
+      <FilterInfoList>
+		<FilterInfo Index="1" Type="2">
+		<ClassInfo Type="30390">
+			<TextInfo >
+		      <TextLine>[ACI][\U&lt;]\U[\U&lt;]{2}[\D&lt;]{25}</TextLine>
+		      <TextLine>[\D]{7}[MF][\D]{7}[\U&lt;]{3}[\D\U&lt;]{11}\D</TextLine>
+              <TextLine>[\U\D&lt;]{30}</TextLine>			  
+		   </TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>
+	<Template  MainID="2028" SubID="1" Name="法国身份证" Enable="1" SizeType="4">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+			<TextInfo >
+		      <TextLine>IDFRA[\U&lt;]{31}</TextLine>
+		      <TextLine>\D{13}[\U&lt;]{14}\D{7}[FM]\D</TextLine>			  
+		   </TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	<Template  MainID="2028" SubID="1" Name="法国身份证" Enable="1" SizeType="4">
+      <FilterInfoList>
+		<FilterInfo Index="2" Type="2">
+		<ClassInfo Type="36272">
+			<TextInfo >
+		      <TextLine>[TI]0FRA[\U&lt;]{31}</TextLine>
+		      <TextLine>[\U\D]{13}[\D\U&lt;]{14}\D{7}[FM]\D</TextLine>			  
+		   </TextInfo>
+		</ClassInfo>
+        </FilterInfo>
+      </FilterInfoList>
+    </Template>	
+	
+	<!--以下 移动端 小条MRZ分类-->
+	<Template MainID="1036" SubID="1" Name="Two MRZ 36*2签证" Enable="1" SizeType="5">
+		<FilterInfoList>
+			<FilterInfo Index="4" Type="2">
+				<ClassInfo Type="362722">
+					<TextInfo>
+						<TextLine>V[\U&lt;]{35}</TextLine>
+						<TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1036" SubID="2" Name="Two MRZ 36*2TD-2" Enable="1" SizeType="5">
+		<FilterInfoList>
+			<FilterInfo Index="4" Type="2">
+				<ClassInfo Type="362722">
+					<TextInfo>
+						<TextLine>[ACI]{1}[\U&lt;]{35}</TextLine>
+						<TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]{1}\D{7}[\U\D&lt;]{8}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1034" SubID="1" Name="通用MRZ港澳通行证2005版" Enable="1" SizeType="5">
+		<FilterInfoList>
+			<FilterInfo Index="4" Type="2">
+				<ClassInfo Type="442882">
+					<TextInfo>
+						<TextLine>[WAQ]{1}[K&lt;]{1}CHN[\U&lt;]{39}</TextLine>
+						<TextLine>[WAQ]{1}\D{9}CHN\D{7}[MF]\D{7}[\D\U&lt;]{16}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1034" SubID="2" Name="通用MRZ台胞证92版" Enable="1" SizeType="5">
+		<FilterInfoList>
+			<FilterInfo Index="4" Type="2">
+				<ClassInfo Type="442882">
+					<TextInfo>
+						<TextLine>T&lt;CHN[\U&lt;]{39}</TextLine>
+						<TextLine>[Y&lt;\D]{10}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1034" SubID="3" Name="通用MRZ台湾通行证92版" Enable="1" SizeType="5">
+		<FilterInfoList>
+			<FilterInfo Index="4" Type="2">
+				<ClassInfo Type="442882">
+					<TextInfo>
+						<TextLine>D&lt;CHN[\U&lt;]{39}</TextLine>
+						<TextLine>T\D{9}CHN\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1034" SubID="4" Name="通用MRZ签证" Enable="1" SizeType="5">
+		<FilterInfoList>
+			<FilterInfo Index="4" Type="2">
+				<ClassInfo Type="442882">
+					<TextInfo>
+						<TextLine>V[\U&lt;]\U[\U&lt;]{2}[\U&lt;]{39}</TextLine>
+						<TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1034" SubID="5" Name="通用MRZ护照" Enable="1" SizeType="5">
+		<FilterInfoList>
+			<FilterInfo Index="4" Type="2">
+				<ClassInfo Type="442882">
+					<TextInfo>
+						<TextLine>P[\U&lt;]\U[\U&lt;]{2}[\U&lt;]{39}</TextLine>
+						<TextLine>[\U\D&lt;]{10}\U[\U&lt;]{2}\D{7}[FM]\D{7}[\D\U&lt;]{16}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1034" SubID="6" Name="通用MRZ海员证09版" Enable="1" SizeType="5">
+		<FilterInfoList>
+			<FilterInfo Index="4" Type="2">
+				<ClassInfo Type="442882">
+					<TextInfo>
+						<TextLine>S&lt;CHN[\U&lt;]{39}</TextLine>
+						<TextLine>\U\D{9}CHN\D{7}[FM][\D]{7}[\D\U&lt;]{16}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1034" SubID="7" Name="通用MRZ出入境通行证14版" Enable="1" SizeType="5">
+		<FilterInfoList>
+			<FilterInfo Index="4" Type="2">
+				<ClassInfo Type="442882">
+					<TextInfo>
+						<TextLine>B[\U&lt;]{1}CHN[\U&lt;]{39}</TextLine>
+						<TextLine>B[\D]{9}CHN\D{7}[FM]\D{7}[\U&lt;]{13}\D{3}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1033" SubID="1" Name="三行机读码旧版回乡证背面" Enable="1" SizeType="6">
+		<FilterInfoList>
+			<FilterInfo Index="3" Type="2">
+				<ClassInfo Type="303902">
+					<TextInfo>
+						<TextLine>C&lt;CHN[\D&lt;]{31}</TextLine>
+						<TextLine>\D{7}[MF]\D{7}[HM]\D{14}</TextLine>	
+						<TextLine>[\U&lt;]{30}</TextLine>		
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1033" SubID="2" Name="三行机读码新版回乡证背面" Enable="1" SizeType="6">
+		<FilterInfoList>
+			<FilterInfo Index="3" Type="2">
+				<ClassInfo Type="303902">
+					<TextInfo>
+						<TextLine>CR[HM]\D{19}[MF]\D{7}</TextLine>
+						<TextLine>[\U&lt;]{19}\D{8}&lt;\D{2}</TextLine>	
+						<TextLine>[\U&lt;]{30}</TextLine>	
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1033" SubID="3" Name="三行机读码新版台胞证背面" Enable="1" SizeType="6">
+		<FilterInfoList>
+			<FilterInfo Index="3" Type="2">
+				<ClassInfo Type="303902">
+					<TextInfo>
+						<TextLine>CT\D{8}&lt;\D{11}[MF]\D{7}</TextLine>
+						<TextLine>[\U&lt;]{19}\U\D{10}</TextLine>	
+						<TextLine>[\U&lt;]{26}\D{4}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<Template MainID="1033" SubID="4" Name="三行机读码TD-1" Enable="1" SizeType="6">
+		<FilterInfoList>
+			<FilterInfo Index="3" Type="2">
+				<ClassInfo Type="303902">
+					<TextInfo>
+						<TextLine>[ACI][\U&lt;]\U[\U&lt;]{2}[\D&lt;]{25}</TextLine>
+						<TextLine>[\D]{7}[MF][\D]{7}[\U&lt;]{3}[\D\U&lt;]{11}\D</TextLine>
+						<TextLine>[\U\D&lt;]{30}</TextLine>
+					</TextInfo>
+				</ClassInfo>
+			</FilterInfo>
+		</FilterInfoList>
+	</Template>
+	<!--以上 移动端 小条MRZ分类-->
+
+ </TemplateList>
+</Classifier>
