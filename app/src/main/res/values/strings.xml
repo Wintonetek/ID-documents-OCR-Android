@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">快证通开发包</string>
+    <string name="company_name">Beijing Wintone Science And Technology Co., Ltd.</string>
+    <string name="permission">Please click on the mobile phone settings to agree to the permissions required for the application</string>
+    <string name="m_exit">Press again to exit the program</string>
+
+</resources>

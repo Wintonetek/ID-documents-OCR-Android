@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">快证通开发包</string>
+    <string name="company_name">Beijing Wintone Science And Technology Co., Ltd.</string>
+    <string name="permission">请点开手机设置，同意应用所需权限</string>
+    <string name="m_exit">再按一次退出程序</string>
+</resources>
